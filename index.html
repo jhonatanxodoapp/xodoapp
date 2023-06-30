@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Informações do sistema</title>
+  <script>
+    function obterInformacoesSistema() {
+      var userAgent = navigator.userAgent;
+      var isWindows = /Windows/i.test(userAgent);
+      var version;
+      var processor;
+      var otherData;
+
+      if (isWindows) {
+        if (/Windows NT 10.0/i.test(userAgent)) {
+          if (/Win64/i.test(userAgent)) {
+            version = "Windows 10 (64-bit)";
+          } else {
+            version = "Windows 10 (32-bit)";
+          }
+        } else if (/Windows NT 10.0/i.test(userAgent) && /Win64/i.test(userAgent)) {
+          version = "Windows 11 (64-bit)";
+        } else if (/Windows NT 10.0/i.test(userAgent) && !/Win64/i.test(userAgent)) {
+          version = "Windows 11 (32-bit)";
+        } else if (/Windows NT 6.3/i.test(userAgent)) {
+          version = "Windows 8.1";
+        } else if (/Windows NT 6.2/i.test(userAgent)) {
+          version = "Windows 8";
+        } else if (/Windows NT 6.1/i.test(userAgent)) {
+          version = "Windows 7";
+        } else if (/Windows NT 6.0/i.test(userAgent)) {
+          version = "Windows Vista";
+        } else if (/Windows NT 5.2/i.test(userAgent)) {
+          version = "Windows Server 2003";
+        } else if (/Windows NT 5.1/i.test(userAgent)) {
+          version = "Windows XP";
+        } else if (/Windows NT 5.0/i.test(userAgent)) {
+          version = "Windows 2000";
+        } else if (/Windows Phone 8.0|Windows NT 6.3/i.test(userAgent)) {
+          version = "Windows Phone 8.1";
+        } else if (/Windows Phone 8.1|Windows NT 10.0/i.test(userAgent)) {
+          version = "Windows Phone 10";
+        } else {
+          version = "Versão do Windows desconhecida";
+        }
+
+        if (/Win64|WOW64/i.test(userAgent)) {
+          processor = "64-bit";
+        } else {
+          processor = "32-bit";
+        }
+
+        // Outros dados do sistema que você deseja obter
+        // Exemplo: obter informações sobre a memória, disco rígido, etc.
+        // otherData = ...;
+
+        document.getElementById("versaoWindows").textContent = "Versão do Windows: " + version;
+        document.getElementById("processador").textContent = "Processador: " + processor;
+        // Exibir outros dados do sistema
+        // document.getElementById("outrosDados").textContent = "Outros dados: " + otherData;
+      } else {
+        document.getElementById("versaoWindows").textContent = "Não é um sistema Windows";
+      }
+    }
+  </script>
+</head>
+<body onload="obterInformacoesSistema()">
+  <h1>Informações do sistema</h1>
+  <p id="versaoWindows"></p>
+  <p id="processador"></p>
+  <!-- Exibir outros dados do sistema -->
+  <!-- <p id="outrosDados"></p> -->
+</body>
+</html
